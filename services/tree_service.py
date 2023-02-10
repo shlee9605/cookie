@@ -1,18 +1,11 @@
-from models.users import Users
-from structures import building_structure,product_structure
+from structures import building_structure, product_structure
 
-async def edit_building(id, params):
-    params = Users(
-        user_id=id,
-        buildings=params
-    )
+
+async def edit_building(params):
     result = await building_structure.edit(params)
     return result
 
-async def edit_product(id, params):
-    params = Users(
-        user_id=id,
-        products=params
-    )
+
+async def edit_product(params):
     result = await product_structure.edit(params)
     return result

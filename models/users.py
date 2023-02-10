@@ -6,5 +6,7 @@ from models.buildings import Buildings
 
 class Users(Model):
     user_id: str = Field(index=True, unique=True)
+    pass_word: str
+    year: int
     products: Optional[Products]
     buildings: Optional[Buildings]

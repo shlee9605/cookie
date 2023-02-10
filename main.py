@@ -4,7 +4,7 @@ from fastapi import FastAPI
 
 from dotenv import load_dotenv
 
-from models import mongodb
+from models import connection
 import routes
 
 # dotenv config
@@ -18,13 +18,8 @@ if __name__ == "__main__":
 app = FastAPI()
 
 # mongodb - odmantic - connect
-@app.on_event("startup")
-async def on_app_start():
-    await mongodb.connect()
-
-@app.on_event("shutdown")
-async def op_app_shutdown():
-    mongodb.close()
+app.add_event_handler("startup", connection.on_app_start)
+app.add_event_handler("shutdown", connection.on_app_shutdown)
 
 # routing
 app.include_router(routes.router)
