@@ -1,15 +1,56 @@
+from fastapi import HTTPException
 from structures import user_structure
+from libs.hashUtil import hashPassword, verifyPassword
 
-
-
+# input user
 async def input_user(params):
-    result = await user_structure.input(params)
+    # 1. hash password
+    try: 
+        params.pass_word = hashPassword(params.pass_word)
+    except:
+        raise HTTPException(status_code=500, detail="Password Hashing Failed")
+
+    # 2. input logic
+    try:
+        result = await user_structure.input(params)
+    except:
+        raise HTTPException(status_code=500, detail="Input User Failed")
+    
+    # 3. return at success
     return result
 
+# login
+async def login_user(params):
+    # 1. find user
+    result = await user_structure.output(params['user_id'])
+    if not result:
+        raise HTTPException(status_code=500, detail="No Matched User")
+
+    # 2. verify password
+    if not verifyPassword(params['pass_word'], result.pass_word):
+        raise HTTPException(status_code=500, detail="Password Matched Failed")
+    
+    # 3. return true
+    return result
+
+# output user
 async def output_user(params):
-    result = await user_structure.output(params)
+    # 1. output user
+    try:
+        result = await user_structure.output(params)
+    except:
+        raise HTTPException(status_code=500, detail="Output User Failed")
+
+    # 2. return at success
     return result
 
-async def extract_user(params):
-    result = await user_structure.extract(params)
+# erase user
+async def erase_user(params):
+    # 2. delete user
+    try: 
+        result = await user_structure.erase(params)
+    except:
+        raise HTTPException(status_code=500, detail="Delete User Failed")
+    
+    # 2. return at success
     return result
