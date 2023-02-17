@@ -10,10 +10,10 @@ async def edit(params):
     
     # 2. Input Building
     try:
-        result.buildings = params['buildings']
+        result.technologies = params['technologies']
         await mongodb.engine.save(result)
     except:
-        raise HTTPException(status_code=500, detail="Editting Buildings Info Failed")
+        raise HTTPException(status_code=500, detail="Editting Technologies Info Failed")
 
     # 3. Return at Success
     return result

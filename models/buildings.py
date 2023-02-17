@@ -4,7 +4,7 @@ class Buildings(Model):
     wood: int = Field(default=0, lt=3, ge=0)
     bean: int = Field(default=0, lt=3, ge=0)
     sugar: int = Field(default=0, lt=3, ge=0)
-    biscket: int = Field(default=0, lt=3, ge=0)
+    biscuit: int = Field(default=0, lt=3, ge=0)
     berry: int = Field(default=0, lt=3, ge=0)
     milk: int = Field(default=0, lt=3, ge=0)
     wool: int = Field(default=0, lt=3, ge=0)
@@ -21,7 +21,7 @@ class Buildings(Model):
     oakplant: int = Field(default=0, lt=3, ge=0)
     patisserie: int = Field(default=0, lt=3, ge=0)
     jewelry: int = Field(default=0, lt=3, ge=0)
-    
 
     # class Config:
     #     collection = "books"
+

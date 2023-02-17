@@ -1,71 +1,76 @@
-from odmantic import Model, Field
+from odmantic import Model, Field, EmbeddedModel
+from typing import Optional
 from enum import Enum
 
 class product_open(str, Enum):
     true = "O"
     false = "X"
 
+class Product_Detail(EmbeddedModel):
+    supplies: product_open = Field(default="X")
+    demands: product_open = Field(default="X")
+
 class Products(Model):
-    wood: product_open = Field(default="X")
-    bean: product_open = Field(default="X")
-    sugar: product_open = Field(default="X")
-    biscket: product_open = Field(default="X")
-    berry: product_open = Field(default="X")
-    milk: product_open = Field(default="X")
-    wool: product_open = Field(default="X")
-    axe: product_open = Field(default="X")
-    pickax: product_open = Field(default="X")
-    saw: product_open = Field(default="X")
-    shovel: product_open = Field(default="X")
-    pile: product_open = Field(default="X")
-    tongs: product_open = Field(default="X")
-    hammer: product_open = Field(default="X")
-    jellybean_jam: product_open = Field(default="X")
-    sweetjelly_jam: product_open = Field(default="X")
-    dalgona_jam: product_open = Field(default="X")
-    pomegranate_jam: product_open = Field(default="X")
-    tokberry_jam: product_open = Field(default="X")
-    birddoll: product_open = Field(default="X")
-    lamp: product_open = Field(default="X")
-    clock: product_open = Field(default="X")
-    dreamcatcher: product_open = Field(default="X")
-    ryebread: product_open = Field(default="X")
-    jampie: product_open = Field(default="X")
-    pocachia: product_open = Field(default="X")
-    donut: product_open = Field(default="X")
-    castella: product_open = Field(default="X")
-    croissant: product_open = Field(default="X")
-    jellystew: product_open = Field(default="X")
-    burger: product_open = Field(default="X")
-    pasta: product_open = Field(default="X")
-    omeletrice: product_open = Field(default="X")
-    pizzajelly: product_open = Field(default="X")
-    jellybean_meal: product_open = Field(default="X")
-    flower_pot: product_open = Field(default="X")
-    glass_plate: product_open = Field(default="X")
-    colored_marble: product_open = Field(default="X")
-    bowl: product_open = Field(default="X")
-    candy_flower: product_open = Field(default="X")
-    happy_flower: product_open = Field(default="X")
-    flower_bundle: product_open = Field(default="X")
-    flower_basket: product_open = Field(default="X")
-    bouquet: product_open = Field(default="X")
-    wreath: product_open = Field(default="X")
-    cream: product_open = Field(default="X")
-    butter: product_open = Field(default="X")
-    cheese: product_open = Field(default="X")
-    latte: product_open = Field(default="X")
-    bubbletea: product_open = Field(default="X")
-    ade: product_open = Field(default="X")
-    cushion: product_open = Field(default="X")
-    bearjelly_doll: product_open = Field(default="X")
-    dragonfruit_dool: product_open = Field(default="X")
-    root_beer: product_open = Field(default="X")
-    redberry_juice: product_open = Field(default="X")
-    wild_bottle: product_open = Field(default="X")
-    spooky_muffin: product_open = Field(default="X")
-    strawberry_cake: product_open = Field(default="X")
-    chiffon_cake: product_open = Field(default="X")
-    ring: product_open = Field(default="X")
-    brooch: product_open = Field(default="X")
-    crown: product_open = Field(default="X")
+    wood: Optional[Product_Detail]
+    bean: Optional[Product_Detail]
+    sugar: Optional[Product_Detail]
+    biscuit: Optional[Product_Detail]
+    berry: Optional[Product_Detail]
+    milk: Optional[Product_Detail]
+    wool: Optional[Product_Detail]
+    axe: Optional[Product_Detail]
+    pickax: Optional[Product_Detail]
+    saw: Optional[Product_Detail]
+    shovel: Optional[Product_Detail]
+    pile: Optional[Product_Detail]
+    tongs: Optional[Product_Detail]
+    hammer: Optional[Product_Detail]
+    jellybean_jam: Optional[Product_Detail]
+    sweetjelly_jam: Optional[Product_Detail]
+    dalgona_jam: Optional[Product_Detail]
+    pomegranate_jam: Optional[Product_Detail]
+    tokberry_jam: Optional[Product_Detail]
+    birddoll: Optional[Product_Detail]
+    lamp: Optional[Product_Detail]
+    clock: Optional[Product_Detail]
+    dreamcatcher: Optional[Product_Detail]
+    ryebread: Optional[Product_Detail]
+    jampie: Optional[Product_Detail]
+    pocachia: Optional[Product_Detail]
+    donut: Optional[Product_Detail]
+    castella: Optional[Product_Detail]
+    croissant: Optional[Product_Detail]
+    jellystew: Optional[Product_Detail]
+    burger: Optional[Product_Detail]
+    pasta: Optional[Product_Detail]
+    omeletrice: Optional[Product_Detail]
+    pizzajelly: Optional[Product_Detail]
+    jellybean_meal: Optional[Product_Detail]
+    flower_pot: Optional[Product_Detail]
+    glass_plate: Optional[Product_Detail]
+    colored_marble: Optional[Product_Detail]
+    bowl: Optional[Product_Detail]
+    candy_flower: Optional[Product_Detail]
+    happy_flower: Optional[Product_Detail]
+    flower_bundle: Optional[Product_Detail]
+    flower_basket: Optional[Product_Detail]
+    bouquet: Optional[Product_Detail]
+    wreath: Optional[Product_Detail]
+    cream: Optional[Product_Detail]
+    butter: Optional[Product_Detail]
+    cheese: Optional[Product_Detail]
+    latte: Optional[Product_Detail]
+    bubbletea: Optional[Product_Detail]
+    ade: Optional[Product_Detail]
+    cushion: Optional[Product_Detail]
+    bearjelly_doll: Optional[Product_Detail]
+    dragonfruit_dool: Optional[Product_Detail]
+    root_beer: Optional[Product_Detail]
+    redberry_juice: Optional[Product_Detail]
+    wild_bottle: Optional[Product_Detail]
+    spooky_muffin: Optional[Product_Detail]
+    strawberry_cake: Optional[Product_Detail]
+    chiffon_cake: Optional[Product_Detail]
+    ring: Optional[Product_Detail]
+    brooch: Optional[Product_Detail]
+    crown: Optional[Product_Detail]
