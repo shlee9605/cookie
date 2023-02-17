@@ -4,7 +4,7 @@ from models.users import Users
 
 async def edit(params):
     # 1. Find User
-    result = await mongodb.engine.find_one(Users, Users.user_id==params['user_id'])
+    result = await mongodb.engine.find_one(Users, Users.user_id==params['user_id'], Users.deletedAt == None)
     if not result:
         raise HTTPException(status_code=500, detail="No Matched User Found")
 

@@ -1,4 +1,5 @@
 from fastapi import HTTPException
+
 from structures import user_structure
 from libs.hashUtil import hashPassword, verifyPassword
 
@@ -11,10 +12,7 @@ async def input_user(params):
         raise HTTPException(status_code=500, detail="Password Hashing Failed")
 
     # 2. input logic
-    try:
-        result = await user_structure.input(params)
-    except:
-        raise HTTPException(status_code=500, detail="Input User Failed")
+    result = await user_structure.input(params)
     
     # 3. return at success
     return result
@@ -36,17 +34,14 @@ async def login_user(params):
 # output user
 async def output_user(params):
     # 1. output user
-    try:
-        result = await user_structure.output(params)
-    except:
-        raise HTTPException(status_code=500, detail="Output User Failed")
+    result = await user_structure.output(params)
 
     # 2. return at success
     return result
 
 # erase user
 async def erase_user(params):
-    # 2. delete user
+    # 1. delete user
     try: 
         result = await user_structure.erase(params)
     except:

@@ -1,20 +1,26 @@
 from fastapi import APIRouter, HTTPException
 from services import tree_service
+from models.technologies import Technologies
 from models.buildings import Buildings
 from models.products import Products
 
 router = APIRouter()
 
-# edit user's building info
-@router.put("/kingdom/tree/buildings")
-async def building_root(request: Buildings, id: str):
+# edit user's technologies info
+@router.put("/kingdom/tree/technologies")
+async def building_root(request: Technologies, param: str):
     # 1. Check Request
     try:
-        params = Buildings(
+        params = Technologies(
+            clocktower=request.clocktower,
+            mataccel1=request.mataccel1,
+            prodaccel1=request.prodaccel1,
+            mataccel2=request.mataccel2,
+            prodaccel2=request.prodaccel2,
             wood=request.wood,
             bean=request.bean,
             sugar=request.sugar,
-            biscket=request.biscket,
+            biscuit=request.biscuit,
             berry=request.berry,
             milk=request.milk,
             wool=request.wool,
@@ -31,7 +37,43 @@ async def building_root(request: Buildings, id: str):
             patisserie=request.patisserie,
             jewelry=request.jewelry
         )
-        params = {'user_id': id, 'buildings': params}
+        params = {'user_id': param, 'technologies': params}
+    except:
+        raise HTTPException(status_code=400, detail="Bad Request")
+
+    # 2. Execute Bussiness Logic
+    response = await tree_service.edit_technology(params)
+
+    # 3. Response
+    return response
+
+# edit user's building info
+@router.put("/kingdom/tree/buildings")
+async def building_root(request: Buildings, param: str):
+    # 1. Check Request
+    try:
+        params = Buildings(
+            wood=request.wood,
+            bean=request.bean,
+            sugar=request.sugar,
+            biscuit=request.biscuit,
+            berry=request.berry,
+            milk=request.milk,
+            wool=request.wool,
+            smithy=request.smithy,
+            jemstore=request.jemstore,
+            workshop=request.workshop,
+            bakery=request.bakery,
+            restaurant=request.restaurant,
+            pottery=request.pottery,
+            flowershop=request.flowershop,
+            milkplant=request.milkplant,
+            dollshop=request.dollshop,
+            oakplant=request.oakplant,
+            patisserie=request.patisserie,
+            jewelry=request.jewelry
+        )
+        params = {'user_id': param, 'buildings': params}
     except:
         raise HTTPException(status_code=400, detail="Bad Request")
 
@@ -43,14 +85,14 @@ async def building_root(request: Buildings, id: str):
 
 # edit user's product info
 @router.put("/kingdom/tree/products")
-async def product_root(request: Products, id: str):
+async def product_root(request: Products, param: str):
     # 1. Check Request
     try: 
         params = Products(
             wood=request.wood,
             bean=request.bean,
             sugar=request.sugar,
-            biscket=request.biscket,
+            biscuit=request.biscuit,
             berry=request.berry,
             milk=request.milk,
             wool=request.wool,
@@ -110,7 +152,7 @@ async def product_root(request: Products, id: str):
             brooch=request.brooch,
             crown=request.crown
         )
-        params = {'user_id': id, 'products': params}
+        params = {'user_id': param, 'products': params}
     except:
         raise HTTPException(status_code=400, detail="Bad Request")
 
