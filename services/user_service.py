@@ -22,11 +22,11 @@ async def login_user(params):
     # 1. find user
     result = await user_structure.output(params['user_id'])
     if not result:
-        raise HTTPException(status_code=500, detail="No Matched User")
+        raise HTTPException(status_code=400, detail="No Matched User")
 
     # 2. verify password
     if not verifyPassword(params['pass_word'], result.pass_word):
-        raise HTTPException(status_code=500, detail="Password Matched Failed")
+        raise HTTPException(status_code=401, detail="Password Matched Failed")
     
     # 3. return true
     return result
@@ -42,10 +42,7 @@ async def output_user(params):
 # erase user
 async def erase_user(params):
     # 1. delete user
-    try: 
-        result = await user_structure.erase(params)
-    except:
-        raise HTTPException(status_code=500, detail="Delete User Failed")
+    result = await user_structure.erase(params)
     
     # 2. return at success
     return result
