@@ -18,5 +18,6 @@ class MongoDB:
     
     def close(self):
         self.client.close()
+        print("close")
 
 mongodb = MongoDB()

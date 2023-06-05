@@ -39,7 +39,6 @@ async def erase(params):
         await mongodb.engine.save(result)
     except:
         raise HTTPException(status_code=500, detail="User Delete Failed")
-
     # 3. Return at Success
     return result
 

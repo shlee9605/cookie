@@ -100,6 +100,7 @@ async def product_root(request: Products, param: str):
             pickax=request.pickax,
             saw=request.saw,
             shovel=request.shovel,
+            pile=request.pile,
             tongs=request.tongs,
             hammer=request.hammer,
             jellybean_jam=request.jellybean_jam,
